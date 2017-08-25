@@ -1,0 +1,127 @@
+---
+GIT
+---
+
+-----------
+INDICE FILE
+-----------
+1. Glossario
+2. Passi da fare per usare git
+3. Clonare una repository
+4. Push
+5. Pull
+6. Comandi
+
+
+--------
+GLOSSARIO
+---------
+Git - software di controllo versione distribuito
+Github - servizio di hosting per progetti software
+Clonare - connettersi ad una repo remota, fare una copia connessa di una repo remota in locale, da questa sara' possibile fare pull/push 
+Push - invio modifiche, per aggiornare la repository remota inviando le proprie modifiche
+Pull - aggiornare repository locale ricevendo gli eventuali cambiamenti
+Repository - ambiente di lavoro, cartella principale di un progetto
+Master - branch principale di una repository
+Branch - I branch (ramificazioni) sono utilizzati per sviluppare features che sono isolate l'una dall'altra o per lo sviluppo(anche modificare o fare fix), questi infine potranno essere incorporati ('merge') nel master branch, o nei rispettivi branch padri, una volta completati. 
+
+---------------------------
+PASSI DA FARE PER USARE GIT
+---------------------------
+1. Creare un account su github.com
+2. Installare git sul proprio computer (c'e' anche con gui)
+3. Creare una repository(anche dal sito web)
+4. Collegare repository
+5. Auguri e buon lavoro
+
+----------------------
+CLONARE UNA REPOSITORY
+----------------------
+Creare una chiave rsa con(in linux):
+	ssh-keygen -t rsa -C "nomerepository(o quel che vuoi)@nomeAccount(o quel ce vuoi).io"
+	copiare il contenuto del file .ssh/id_rsa.pub in github creando una nuova ssh key
+Impostare dati utente con:
+	git config user.email "email" - per impostare email utente locale
+	git config user.name "name" - per impostare nome utente locale
+Clonare la repository:
+	Copiare l'indirizzo ssh della repository voluta
+	Fare la clone( o creare o connettersi direttamente)
+		git clone indirizzo_ssh_repository
+(opzionale) Inizializzare una repository se vuota/nuova
+
+----
+PUSH
+----
+La copia di una repository locale è composta da tre parti. La prima è la propria directory di lavoro, che contiene i files attuali. La seconda è l'Index che fa da spazio di transito per i files e per finire l'HEAD che punta all'ultimo commit fatto. 
+Per fare push bisogna prima di tutto aggiungere nell'index i file che abbiamo modificato, e che quindi intendiamo modificare anche nella repository principale, con il comando add. Poi bisogna aggiungere 
+
+
+----
+PULL
+----
+
+-------
+COMANDI
+-------
+git init - inizializza una nuova directory
+git clone indirizzo_repository
+git status - mostra lo stato corrente, tra cui il branch corrente
+git pull - aggiorni repositori
+git pull -u origin master - l'opzione -u salva il comando per il prossimo push, origin e' la repository remota e master il branch da cui fare pull
+git add nome_del_file_da_aggiungere - aggiungi un file che dovrà essere committato
+git commit -m "messaggio" - lanci un commit
+git push - spedisci ciò che è stato committato(aggiunto, rimosso o modificato, sia file che branch)
+git diff - mostra cosa e' cambiato dall'ultimo commit effettuato
+git diff --staged - mostra i cambiamenti che abbiamo effettuato(git add)
+
+-log
+git log - ottieni log, i commit fatti dall'ultimo aggiornamento
+git log --graph --all --oneline - visualizza i log con una grafica dei branch
+git reflog - per vedere log ordinatamente
+
+git stash - ripristina la directory locale in caso ci siano state delle modifiche e non committate, per fare pull
+git reset
+git reset directoryname/filename.txt - rimuovo filename dai i file staged(di fa unstaging)/committed
+git checkout -- <nomedelfile> -  per ripristinare un file modificato in locale, con l'ultimo contenuto presente in HEAD(ultimo commit)
+git checkout numero_chiave_commit - fa tornare indietro al commit scelto
+
+-config
+git config user.email email_utente@email.com
+git config user.name nome_utente
+git config color.ui true - colora gli output di git
+git config format.pretty oneline - mostra il logi in una riga per commit
+git config format.pretty fuller/short/medium/full/email/raw/format:<string>
+
+git add * - aggiungi i file modificati nell'index
+git add -p - aggiunta con richiesta riga per riga(Y/n)
+git add -i - aggiunte interattiva
+git rm -r one-of-the-directories - rimuovi directory, va dopo committato
+git rm one-of-the-files - rimuovi un file
+git show HEAD - mostra cosa c'è nell'HEAD 
+
+
+-branch
+git branch clean_up - crea un nuovo (sotto)branch chiamato clean_up copia di quello corrente
+git checkout nome_branch - ci sposta su nome_branch
+git rm '*.txt' - rimuove tutti i file con desinenza '.txt' dal branch corrent(va poi fatto il commit)
+git merge nome_branch - faccio merge dal branch nome_branch con quello padre corrente
+git branch -d nome_branch - rimuovo il branch nome_branch
+
+git branch - visualizza la lista dei branch "toccati" su cui si ha almeno teoricamente lavorato o si è acceduto
+git branch -a - visualizza anche i branch remoti
+git branch -r - visualizza solo i branch remoti
+git checkout -b nome_branch - crea branch
+
+git fetch -p  - per risincronizzare con il branch, eliminando tutti i commit fatti in locale, recuperando l'ultima versione dal server
+gir reset --hard origin/mater - per ripristinare tutto
+git remote
+git ls-remote
+git diff <branch_sorgente> <branch_target> - per visualizzare le modifiche eseguite
+
+git checkout -- qualcosa (anche *) - ripristina branch da modifiche a un/ai file
+
+**
+eliminare un branch remoto:
+	git branch -d the_local_branch
+	git push origin :the_remote_branch
+**
