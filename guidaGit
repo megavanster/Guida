@@ -1,4 +1,4 @@
----
+﻿---
 GIT
 ---
 
@@ -38,7 +38,7 @@ PASSI DA FARE PER USARE GIT
 CLONARE UNA REPOSITORY
 ----------------------
 Creare una chiave rsa con(in linux):
-	ssh-keygen -t rsa -C "nomerepository(o quel che vuoi)@nomeAccount(o quel ce vuoi).io"
+	ssh-keygen -t rsa -C "nomerepository(o quel che vuoi)@nomeAccount(o quel ce vuoi).io"	
 	copiare il contenuto del file .ssh/id_rsa.pub in github creando una nuova ssh key
 Impostare dati utente con:
 	git config user.email "email" - per impostare email utente locale
@@ -125,6 +125,7 @@ eliminare un branch remoto:
 	git branch -d the_local_branch
 	git push origin :the_remote_branch
 **
-**
-riga di prova
-**
+
+***
+***
+***
